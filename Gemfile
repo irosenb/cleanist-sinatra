@@ -7,9 +7,11 @@ gem "activerecord"
 gem "sinatra-activerecord"
 gem "rake"
 gem "omniauth-pocket"
+gem "erb2haml"
+gem "html2haml"
+gem "haml"
 
 group :development do
   gem "shotgun"
-  gem "erb2haml"
   gem "tux"
 end

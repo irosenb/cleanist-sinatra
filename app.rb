@@ -21,13 +21,13 @@ module Name
 
     #routes
     get '/' do
-      erb :index
+      haml :index
     end
 
     #helpers
     helpers do
       def partial(file_name)
-        erb file_name, :layout => false
+        haml file_name, :layout => false
       end
     end
 

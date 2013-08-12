@@ -99,6 +99,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   erb2haml
+  haml
+  html2haml
   omniauth-pocket
   rake
   shotgun
