@@ -8,11 +8,13 @@ class Pocket < ActiveRecord::Base
 
 	# end
 
-	def retrieve
-		# Add a link in Pocket. Check out the Pocket API website to see what params 
-		# it takes. 
+	def retrieve 
 		url = "get/"
 		join_url(url)
+		time =~ Time.now.to_i
+		options = {
+			:since = time
+		}
 		
 	end
 
