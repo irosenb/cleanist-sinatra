@@ -38,7 +38,7 @@ module Cleanist
       @user = auth[:info][:name]
 
       pocket = Pocket.new(key, @token, @user)
-
+      
       time = Time.now.to_i
 
       options = {:consumer_key => key, :access_token => @token}
