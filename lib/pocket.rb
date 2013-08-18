@@ -11,10 +11,13 @@ class Pocket < ActiveRecord::Base
 	def retrieve(consumer_key) 
 		url = "get/"
 		pocket_url = join_url(url)
-		# time = Time.now.to_i
 		token = self.token
-		puts consumer_key
-		puts time = self.created_at #.to_i
+
+		# update time UNLESS it's a new person.
+		unless self.updated_at == self.created_at
+			time = self.updated_at.to_i
+		end
+
 		options = {
 			:access_token => token,
 			:consumer_key => consumer_key, 
@@ -22,6 +25,7 @@ class Pocket < ActiveRecord::Base
 		}
 
 		hello = RestClient.post pocket_url, options
+		self.touch 
 		# JSON.parse(hello)
 	end
 
