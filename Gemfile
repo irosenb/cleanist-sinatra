@@ -11,6 +11,7 @@ gem "html2haml"
 gem "haml"
 gem "httparty"
 gem "rest-client"
+gem "json"
 
 group :development do
   gem "shotgun"

@@ -37,12 +37,12 @@ module Cleanist
       @token = auth[:credentials][:token]
       @user = auth[:info][:name]
 
-      pocket = Pocket.new(key, @token, @user)
-      
-      time = Time.now.to_i
-
-      options = {:consumer_key => key, :access_token => @token}
-      @hello = RestClient.post 'https://getpocket.com/v3/get', options
+      pocket = Pocket.new(token: @token, user: @user)
+      # time = Time.now.to_i
+      @hello = pocket.retrieve(key)
+      @time = pocket.created_at
+      # options = {:consumer_key => key, :access_token => @token}
+      # @hello = RestClient.post 'https://getpocket.com/v3/get', options
       haml :callback
     end
 

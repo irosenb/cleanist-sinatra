@@ -1,21 +1,28 @@
 class Pocket < ActiveRecord::Base 
 	# def initialize(token, user)
-	# 	# @auth = {
-	# 	# 	:token => token,
-	# 	# 	:consumer_key => consumer_key
-	# 	# }
+	# 	@auth = {
+	# 		:token => token,
+	# 		:consumer_key => consumer_key
+	# 	}
 
 
 	# end
 
-	def retrieve 
+	def retrieve(consumer_key) 
 		url = "get/"
-		join_url(url)
-		time =~ Time.now.to_i
+		pocket_url = join_url(url)
+		# time = Time.now.to_i
+		token = self.token
+		puts consumer_key
+		puts time = self.created_at #.to_i
 		options = {
-			:since = time
+			:access_token => token,
+			:consumer_key => consumer_key, 
+			:since => (time if defined? time)
 		}
-		
+
+		hello = RestClient.post pocket_url, options
+		# JSON.parse(hello)
 	end
 
 
