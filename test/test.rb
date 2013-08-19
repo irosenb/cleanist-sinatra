@@ -3,7 +3,11 @@ ENV['RACK_ENV'] = 'test'
 require "../app"
 require "test/unit"
 require "rack/test"
-require "../lib/pocket"
+Dir.glob('../lib/*.rb') do |model|
+  require model
+end
+
+# require "../lib/pocket"
 
 class CleanistTest < Test::Unit::TestCase
 	include Rack::Test::Methods
@@ -27,6 +31,13 @@ class CleanistTest < Test::Unit::TestCase
 		get '/'
 		assert(last_response.body.include?('crafter'), "Add created by section.")
 	end
+
+	def test_pocket_working
+		pocket_name = Pocket.new
+		pocket_name = pocket_name.class.name
+		puts pocket_name
+		assert_equal("Pocket", pocket_name, "Pocket not working")
+	end
 end
 
 class PocketTest < Test::Unit::TestCase
@@ -34,13 +45,6 @@ class PocketTest < Test::Unit::TestCase
 	
 	def app
 		Cleanist::Pocket
-	end
-
-	def test_pocket_working
-		pocket_name = Pocket.new
-		pocket_name = pocket_name.class.name
-		puts pocket_name
-		assert_equal("Pocket", pocket_name, "Pocket not working")
 	end
 	
 end
