@@ -40,7 +40,7 @@ module Cleanist
       pocket = Pocket.find_or_create_by(token: @token, user: @user)
       # time = Time.now.to_i
       @hello = pocket.retrieve(key)
-      @time = pocket[:created_at] # read_attribute(:created_at) Test when internet available
+      @time = pocket.updated_at # read_attribute(:created_at) Test when internet available
       # options = {:consumer_key => key, :access_token => @token}
       # @hello = RestClient.post 'https://getpocket.com/v3/get', options
       haml :callback
